@@ -7,7 +7,10 @@ const inptEl = document.querySelector('#datetime-picker');
 
 const buttonDateStart = document.querySelector('.button-start');
 
-const timerElement = document.querySelector('.timer');
+const daysTimer = document.querySelector('[data-days]');
+const hoursTimer = document.querySelector('[data-hours]');
+const minutesTimer = document.querySelector('[data-minutes]');
+const secondsTimer = document.querySelector('[data-seconds]');
 
 let deadLine;
 
@@ -40,14 +43,10 @@ function startTimer() {
     const currentTime = Date.now();
     const diff = deadLine - currentTime;
     const { days, hours, minutes, seconds } = convertMs(diff);
-    timerElement.querySelector('[data-days]').textContent =
-      addLeadingZero(days);
-    timerElement.querySelector('[data-hours]').textContent =
-      addLeadingZero(hours);
-    timerElement.querySelector('[data-minutes]').textContent =
-      addLeadingZero(minutes);
-    timerElement.querySelector('[data-seconds]').textContent =
-      addLeadingZero(seconds);
+    daysTimer.textContent = addLeadingZero(days);
+    hoursTimer.textContent = addLeadingZero(hours);
+    minutesTimer.textContent = addLeadingZero(minutes);
+    secondsTimer.textContent = addLeadingZero(seconds);
     if (diff < 1000) {
       clearInterval(intervalId);
       alert('Congratulation');
